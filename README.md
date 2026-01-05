@@ -7,5 +7,7 @@ To start this up:
 
 ```shell
 docker compose build
+# CRUCIALLY IMPORTANT before first run (only then), else claude will fail
+echo "{}" > .claude.json
 docker compose run claude-code
 ```

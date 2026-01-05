@@ -23,8 +23,11 @@ services:
       # Bind mount your working directory
       - ${WORKSPACE_DIR:-.}:/workspace
 
-      # Optional: Persist Claude Code config
+      # Persist Claude Code config directory
       - claude-code-config:/home/${USERNAME:-claude}/.claude
+
+      # Bind mount config file for easy access
+      - ./.claude.json:/home/${USERNAME:-claude}/.claude.json
 
     # Interactive terminal
     stdin_open: true

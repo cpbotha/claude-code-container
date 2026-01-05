@@ -23,9 +23,8 @@ services:
       # Bind mount your working directory
       - ${WORKSPACE_DIR:-.}:/workspace
 
-      # Optional: Persist Claude Code config and cache
-      - claude-code-config:/home/${USERNAME:-claude}/.config/claude
-      - claude-code-cache:/home/${USERNAME:-claude}/.cache/claude
+      # Optional: Persist Claude Code config
+      - claude-code-config:/home/${USERNAME:-claude}/.claude
 
     # Interactive terminal
     stdin_open: true
@@ -39,4 +38,3 @@ services:
 
 volumes:
   claude-code-config:
-  claude-code-cache:

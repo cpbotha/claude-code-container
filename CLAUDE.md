@@ -1,0 +1,2 @@
+- Read the README.md
+- IMPORTANT: DO NOT delete apt cache in the Dockerfile (no `rm -rf /var/lib/apt/lists/*`). This container is designed to have a hot cache for faster dev work.

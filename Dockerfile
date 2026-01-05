@@ -10,7 +10,16 @@ RUN apt-get update && apt-get install -y \
     git \
     curl \
     sudo \
-    tmux
+    tmux \
+    locales
+
+# Configure locale for UTF-8 support
+RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
+    locale-gen
+
+ENV LANG=en_US.UTF-8 \
+    LC_ALL=en_US.UTF-8 \
+    LANGUAGE=en_US:en
 
 # Create user with matching UID/GID
 RUN groupadd -g ${GID} ${USERNAME} && \

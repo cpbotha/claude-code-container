@@ -1,0 +1,42 @@
+services:
+  claude-code:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+        USERNAME: ${USERNAME:-claude}
+
+    environment:
+      # Pass through Anthropic API credentials
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY} # keep this empty for openrouter use
+      - ANTHROPIC_AUTH_TOKEN=${ANTHROPIC_AUTH_TOKEN} # openrouter key
+      - ANTHROPIC_BASE_URL=${ANTHROPIC_BASE_URL:-}
+      - ANTHROPIC_LOG=${ANTHROPIC_LOG:-}
+
+      # Optional: Claude Code specific settings
+      - CLAUDE_CODE_CONFIG_DIR=${CLAUDE_CODE_CONFIG_DIR:-}
+      - CLAUDE_CODE_TELEMETRY=${CLAUDE_CODE_TELEMETRY:-}
+
+    volumes:
+      # Bind mount your working directory
+      - ${WORKSPACE_DIR:-.}:/workspace
+
+      # Optional: Persist Claude Code config and cache
+      - claude-code-config:/home/${USERNAME:-claude}/.config/claude
+      - claude-code-cache:/home/${USERNAME:-claude}/.cache/claude
+
+    # Interactive terminal
+    stdin_open: true
+    tty: true
+
+    # Optional: Network mode (useful if you need host network access)
+    # network_mode: "host"
+
+    # Command override (uncomment to run interactively)
+    # command: /bin/bash
+
+volumes:
+  claude-code-config:
+  claude-code-cache:

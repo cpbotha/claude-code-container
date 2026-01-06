@@ -13,7 +13,6 @@ services:
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY} # keep this empty for openrouter use
       - ANTHROPIC_AUTH_TOKEN=${ANTHROPIC_AUTH_TOKEN} # openrouter key
       - ANTHROPIC_BASE_URL=${ANTHROPIC_BASE_URL:-}
-      - ANTHROPIC_LOG=${ANTHROPIC_LOG:-}
 
       # Optional: Claude Code specific settings
       - CLAUDE_CODE_CONFIG_DIR=${CLAUDE_CODE_CONFIG_DIR:-}

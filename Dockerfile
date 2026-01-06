@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y \
     curl \
     sudo \
     tmux \
+    vim \
     locales
 
 # Configure locale for UTF-8 support
